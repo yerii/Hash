@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean answer = true;
+        int len = 0;
+        
+        //오름차순
+        Arrays.sort(phone_book);
+        
+        HashMap<String, String> hm = new HashMap<>();
+        
+        for(String pStr : phone_book){
+            //전화번호, 전화번호앞자리
+            hm.put(pStr,pStr.substring(0,1));
+        }
+        
+        for(int i=0;i<phone_book.length;i++){
+            for(int j=1;j<phone_book.length-i;j++){
+                System.out.println(i+"::"+hm.get(phone_book[i])+"::"+hm.get(phone_book[i+j]));
+                
+                if(hm.get(phone_book[i]).equals(hm.get(phone_book[i+j]))){
+                    len = phone_book[i].length();
+                    System.out.println(len);
+                    if(hm.get(phone_book[i+j].substring(0,len)) != null)
+                        hm.put(phone_book[i+j].substring(0,len),"-1");
+                }
+            }
+        }
+        
+        for(String ans : hm.keySet()){
+            if(hm.get(ans) == "-1") 
+                answer = false;
+        }
+        
+        return answer;
+    }
+}

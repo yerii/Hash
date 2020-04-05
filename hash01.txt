@@ -1,0 +1,28 @@
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        String answer = "";
+        HashMap<String, Integer> hashMap = new HashMap<String,Integer>();
+        
+        for (String pStr : participant){
+            if(hashMap.get(pStr) == null)
+                hashMap.put(pStr,1);
+            else
+                hashMap.put(pStr,hashMap.get(pStr)+1);
+        }
+        
+        for(String cStr : completion){
+            hashMap.put(cStr,hashMap.get(cStr)-1);
+        }
+        
+        for(String ans : hashMap.keySet()){
+            if(hashMap.get(ans) == 1)
+                answer = ans;
+        }
+
+        return answer;
+    }
+}
