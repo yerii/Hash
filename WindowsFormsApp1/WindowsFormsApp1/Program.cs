@@ -15,6 +15,7 @@ namespace WindowsFormsApp1
         static void Main()
         {
             Console.WriteLine("hello world!");
+            Console.WriteLine("hello world2!");
         }
     }
 }
